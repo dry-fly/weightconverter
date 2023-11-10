@@ -2,8 +2,8 @@
 
 Install python3  
 Install pip (Note: Python 3.12.0 for Windows will also install Pip)  
-Setup Github account
-Install git
+Setup Github account  
+Install git  
 Create SSH key, add to Github account, and configure git to use SSH key (see Github docs link below)
 
 In a directory for your coding projects (i.e. c:\path\to\projects\) clone this repository:  git clone git@github.com:dry-fly/weightconverter.git  
