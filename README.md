@@ -7,6 +7,7 @@ Install git
 Create SSH key, add to Github account, and configure git to use SSH key (see Github docs link below)
 
 In a directory for your coding projects (i.e. c:\path\to\projects\) clone this repository:  git clone git@github.com:dry-fly/weightconverter.git  
+!! If that gives you trouble or you want to skip SSH setup until we can walk through it, you could clone with https:  https://github.com/dry-fly/weightconverter.git
 Change into the weightconverter directory
 Create a Python virtual environment: python -m venv .venv  
 
@@ -16,8 +17,9 @@ Activate the virtual environment:
 
 Now to mess with git.  See git_commands.txt.  
 Use that to add weightconverter.py to your local branch, commmit it, and then push it to this repo.  
-!! but actually to do that, I'd have to give you access to this repo, so you'd need a Github account first.  
+!! but actually to push to this repo, I'd have to give you access to this repo, so you'd need a Github account first.  
 !! alternatively, I think you can create a fork maybe?  I dunno.
+!! you can stop short of the push I believe.
 
 
   
