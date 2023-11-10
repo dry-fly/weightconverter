@@ -1,0 +1,93 @@
+## Here are .venv virtual environment has been activated.
+## We just cloned, so we are up to date with what is on Github (origin/main)
+(.venv) PS C:\Users\jason\python\projects\weightconverter> git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+
+## Here we create (with echo command and redirection > to file) a test file
+## Then we add it to be tracked by Git and recheck the status of our local git branch
+(.venv) PS C:\Users\jason\python\projects\weightconverter> echo "Dumb test file text" > testfile.txt
+(.venv) PS C:\Users\jason\python\projects\weightconverter> git add testfile.txt
+(.venv) PS C:\Users\jason\python\projects\weightconverter> git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   testfile.txt
+
+## Now we commit the change to our git branch which puts us ahead of what is on Github (origin/main)
+## Running git status reflects that we are ahead
+(.venv) PS C:\Users\jason\python\projects\weightconverter> git commit
+[main 456a843] Changes to be committed: new file:   testfile.txt
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 testfile.txt
+(.venv) PS C:\Users\jason\python\projects\weightconverter> git status
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+## We now want to run git push to update what is on Github with our changes, we can use 
+## the --dry-run command line switch to see what would happen.  We need to provide our SSH key 
+## to access the Github 
+(.venv) PS C:\Users\jason\python\projects\weightconverter> git push --dry-run
+Enter passphrase for key 'c:\users\jason\.ssh\github_id_ed25519':
+To github.com:dry-fly/weightconverter.git
+ ! [rejected]        main -> main (fetch first)
+error: failed to push some refs to 'github.com:dry-fly/weightconverter.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+## We ran into an error because I had updated README.md on Github with the online editor
+## We need to update our branch with git pull before we can push our change up to Github
+(.venv) PS C:\Users\jason\python\projects\weightconverter> git pull
+Enter passphrase for key 'c:\users\jason\.ssh\github_id_ed25519':
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 3 (delta 1), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), 955 bytes | 68.00 KiB/s, done.
+From github.com:dry-fly/weightconverter
+   38d2916..56ef698  main       -> origin/main
+Merge made by the 'ort' strategy.
+ README.md | 11 ++++++-----
+ 1 file changed, 6 insertions(+), 5 deletions(-)
+
+## Now we have the changes from Github, but we are still ahead with our new testfile.txt
+(.venv) PS C:\Users\jason\python\projects\weightconverter> git status
+On branch main
+Your branch is ahead of 'origin/main' by 2 commits.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+## --dry-run doens't get errors this time, so we then push.
+## What is on Github (origin/main) now has our testfile.txt
+## git status shows we are up to date and have a clean working tree
+(.venv) PS C:\Users\jason\python\projects\weightconverter> git push --dry-run
+Enter passphrase for key 'c:\users\jason\.ssh\github_id_ed25519':
+To github.com:dry-fly/weightconverter.git
+   56ef698..d58351e  main -> main
+(.venv) PS C:\Users\jason\python\projects\weightconverter> git push
+Enter passphrase for key 'c:\users\jason\.ssh\github_id_ed25519':
+Enumerating objects: 7, done.
+Counting objects: 100% (7/7), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (5/5), 720 bytes | 720.00 KiB/s, done.
+Total 5 (delta 0), reused 0 (delta 0), pack-reused 0
+To github.com:dry-fly/weightconverter.git
+   56ef698..d58351e  main -> main
+(.venv) PS C:\Users\jason\python\projects\weightconverter> git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+(.venv) PS C:\Users\jason\python\projects\weightconverter>
