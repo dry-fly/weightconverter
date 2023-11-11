@@ -1,0 +1,33 @@
+# ssh key setup  
+
+Create directory for ssh keys in your user directory (i.e. c:\users\jason)  
+In Linux world, directories starting with '.' are hidden, so following that standard:  
+c:\users\jason> mkdir .ssh  
+c:\users\jason> cd .ssh  
+C:\Users\jason\.ssh>  
+
+Now in your .ssh directory:  
+ssh-keygen --help  
+
+Follow the "Generating a new SSH key" section at the link below.  
+Optionally, consider the "Adding your SH key to the ssh-agent", or deal with entering the SSH key passphrase every time.    
+https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent  
+
+Test SSH connection to Github  
+https://docs.github.com/en/authentication/connecting-to-github-with-ssh/testing-your-ssh-connection  
+
+
+Once the test works, I set this Git config setting so git would launch ssh with the identify file created for me:  
+git config --global core.sshcommand "ssh -o IdentitiesOnly=yes -i 'c:\users\jason\.ssh\github_id_ed25519' -F /dev/null"
+
+Then in the directory where you cloned weightconverter,  
+Fetching should get any changes made to the repo on Github, unlike pull, fetch will just identify the changes  
+git fetch  
+
+Then status will show you are behind (if you are)  
+git status  
+
+Then git pull will update your local branch  
+git pull  
+
+Now that SSH is setup, git pull/git push, all that.  We are ready to collaborate to develop the weightconverter and make a fortune.  
